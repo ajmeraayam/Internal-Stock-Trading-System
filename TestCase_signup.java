@@ -1,21 +1,18 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
+import java.sql.Time;
 
 import org.junit.After;  
 import org.junit.AfterClass;  
 import org.junit.Before;  
 import org.junit.BeforeClass;  
 import org.junit.Test; 
-////////////////////////////////////////////////////
-//import package and class file being tested here
-////////////////////////////////////////////////////
-  
+ 
 public class TestCase_signup {  
-  
-	static File file = new File("abc.txt");													//Address - Preferably /your directory/files/abc.txt
-	signup temp;
+ 
+	static signup temp;
 	
     @BeforeClass  
     public static void setUpBeforeClass() throws Exception {  
@@ -26,15 +23,12 @@ public class TestCase_signup {
     @Before  
     public void setUp() throws Exception {  
         System.out.println("before");
-		
-		//if(file.exists() && !file.isDirectory())
-		//	file.delete();	
     }  
   
     @Test  
     public void testSignupPass(){  
         System.out.println("Testing sign up pass functionality");  
-        assertEquals(true, new signup("John", "Applebee", "japple", "japple@bee.com","johnny").createAcc());												//class name before signup() method  
+        assertEquals(true, new signup("John", "Applebee", temp.getUsername()+System.currentTimeMillis(), "japple@bee.com","johnny").createAcc());												//class name before signup() method  
     }  
 	
 	@Test  
@@ -51,10 +45,23 @@ public class TestCase_signup {
 	}
 	
 	@Test
-	public void testCredLength() {
-		String uname = "username";
+	public void testUniqueUsernameFail() {
+		String s = "ayamaj";
+		System.out.println("Test if userrname is unique.");
+		assertFalse(temp.isUsernameUnique(s));
+	}
+	
+	@Test
+	public void testCredLengthPass() {
+	// Check if password length is >= 8
 		String pwd = "password";
-		assertTrue(checkCredLength(uname, pwd));
+		assertTrue(temp.checkCredLength(pwd));
+	}
+	
+	@Test
+	public void testCredLengthFail() {
+		String pwd = "short";
+		assertFalse(temp.checkCredLength(pwd));
 	}
 	
     @After  

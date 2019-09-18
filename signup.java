@@ -30,12 +30,6 @@ import java.util.*;
 class signup
 {
     
-    
-    /*public static void main(String[] args){
-    signup s1= new signup("sagar","agravat","sagar","s","agravat");
-    s1.storeData();
-    }*/
-
     private String fname, lname, username, email, passwd;
 
     public signup(String fname, String lname, String username, String email, String passwd)
@@ -47,7 +41,11 @@ class signup
         this.passwd = passwd;
     }
 
-    public boolean createAcc()
+    public String getUsername() {
+		return username;
+	}
+
+	public boolean createAcc()
     {
         boolean status = false;
         try
@@ -80,7 +78,19 @@ class signup
     }
     
     public boolean isUsernameUnique (String s) {
-    	return false;
+    	File f = new File(s);
+    	
+    	if (f.exists())
+    		return false;
+    	else 
+    		return true;
     }
+
+	public boolean checkCredLength(String pwd) {
+		if (pwd.length() >= 8)
+			return true;
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

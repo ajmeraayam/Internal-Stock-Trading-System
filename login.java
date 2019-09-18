@@ -1,15 +1,10 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.*;
 
 
 class login
 {
-    /*public static void main(String[] args){
-    login l1 = new login("sagar","agravat");
-    l1.storeData();
-    }*/
     
     private String username, passwd;
 
@@ -49,12 +44,13 @@ class login
             {
                 System.out.println("Either you don't have an account or username is wrong");
             }  
+            br.close();
         }
         catch(Exception e)
         {
             System.out.println("Either you don't have an account or username is wrong");
         }
-
+        
         return status;
     }
 
