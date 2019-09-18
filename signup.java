@@ -79,5 +79,8 @@ class signup
         return status;
     }
     
+    public boolean isUsernameUnique (String s) {
+    	return false;
+    }
 
 }

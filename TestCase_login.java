@@ -31,13 +31,13 @@ public class TestCase_login {
     @Test  
     public void testLoginPass(){  
         System.out.println("Testing login pass functionality");  
-        assertEquals("Successful", login());												//class name before login() method  
+        assertEquals(true, new login("username","password").loginAcc());												//class name before login() method  
     } 
 
 	@Test  
     public void testLoginFail(){  
         System.out.println("Testing login fail functionality");  
-        assertEquals("Unsuccessful. You don't have an account on the system", login());		//class name before login() method  
+        assertEquals(false, new login("username","password").loginAcc());		//class name before login() method  
     }
 	
     @After  

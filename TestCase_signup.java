@@ -15,9 +15,11 @@ import org.junit.Test;
 public class TestCase_signup {  
   
 	static File file = new File("abc.txt");													//Address - Preferably /your directory/files/abc.txt
+	signup temp;
 	
     @BeforeClass  
     public static void setUpBeforeClass() throws Exception {  
+    	temp  = new signup("John", "Applebee", "japple", "japple@bee.com","johnny");
         System.out.println("before class");  
     }
 	
@@ -32,20 +34,20 @@ public class TestCase_signup {
     @Test  
     public void testSignupPass(){  
         System.out.println("Testing sign up pass functionality");  
-        assertEquals("Successful", signup());												//class name before signup() method  
+        assertEquals(true, new signup("John", "Applebee", "japple", "japple@bee.com","johnny").createAcc());												//class name before signup() method  
     }  
 	
 	@Test  
     public void testSignupFail(){  
         System.out.println("Testing sign up fail functionality");  
-        assertEquals("User already exists.", signup());												//class name before signup() method  
+        assertEquals(false, new signup("John", "Applebee", "japple", "japple@bee.com","johnny").createAcc());												//class name before signup() method  
     }
 	
 	@Test
 	public void testUniqueUsername() {
 		String s = "username";
 		System.out.println("Test if userrname is unique.");
-		assertTrue(checkUsername(s));
+		assertTrue(temp.isUsernameUnique(s));
 	}
 	
 	@Test
